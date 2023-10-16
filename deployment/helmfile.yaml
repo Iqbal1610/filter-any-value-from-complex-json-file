@@ -1,0 +1,5 @@
+releases:
+  - name: test-app
+    namespace: test-app
+    chart: ./demo-app
+    version: 0.1.0

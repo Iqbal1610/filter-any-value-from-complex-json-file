@@ -1,0 +1,9 @@
+FROM python:3.9-alpine
+RUN adduser -D worker
+USER worker
+WORKDIR /home/worker
+COPY --chown=worker:worker ./requirements.txt ./requirements.txt
+RUN python -m pip install -r requirements.txt
+ENV PATH="/home/worker/.local/bin:${PATH}"
+COPY --chown=worker:worker . .
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

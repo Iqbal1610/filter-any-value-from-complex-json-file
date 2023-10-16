@@ -1,0 +1,1866 @@
+{
+    "version": 3,
+    "terraform_version": "0.11.3",
+    "serial": 17,
+    "lineage": "a98fc855-4340-42f9-be1b-89f9800e59c7",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {
+                "alb_dns": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "lb-myservice-24014767.eu-west-1.elb.amazonaws.com"
+                },
+                "container_definition": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "[\n  {\n    \"memory\": null,\n    \"memoryReservation\": 2048,\n    \"portMappings\": [\n      {\n        \"hostPort\": 0,\n        \"containerPort\": 3030,\n        \"protocol\": \"tcp\"\n      }\n    ],\n    \"hostname\": null,\n    \"essential\": true,\n    \"name\": \"myservice\",\n    \"environment\": [],\n    \"links\": null,\n    \"image\": \"197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice:1.0.14\",\n    \"logConfiguration\": null\n  }\n]"
+                },
+                "repository_url": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice"
+                },
+                "task_revision": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "32"
+                }
+            },
+            "resources": {
+                "aws_alb_listener.myservice_80": {
+                    "type": "aws_alb_listener",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:listener/app/lb-myservice/3706141e8463296d/2047c4d37d985d0c",
+                        "attributes": {
+                            "arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:listener/app/lb-myservice/3706141e8463296d/2047c4d37d985d0c",
+                            "default_action.#": "1",
+                            "default_action.0.target_group_arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:targetgroup/myservice-alb-tg/12fd69d6c794b6bb",
+                            "default_action.0.type": "forward",
+                            "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:listener/app/lb-myservice/3706141e8463296d/2047c4d37d985d0c",
+                            "load_balancer_arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:loadbalancer/app/lb-myservice/3706141e8463296d",
+                            "port": "80",
+                            "protocol": "HTTP",
+                            "ssl_policy": ""
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.aws_vpc.default": {
+                    "type": "aws_vpc",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "vpc-4b80eb20",
+                        "attributes": {
+                            "cidr_block": "172.31.0.0/16",
+                            "default": "true",
+                            "dhcp_options_id": "dopt-4780eb2c",
+                            "enable_dns_hostnames": "true",
+                            "enable_dns_support": "true",
+                            "id": "vpc-4b80eb20",
+                            "instance_tenancy": "default",
+                            "state": "available",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "ecr"
+            ],
+            "outputs": {
+                "repository_url": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice"
+                }
+            },
+            "resources": {
+                "aws_ecr_repository.registry": {
+                    "type": "aws_ecr_repository",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "myservice",
+                        "attributes": {
+                            "arn": "arn:aws:ecr:eu-west-1:197992572051:repository/myservice",
+                            "id": "myservice",
+                            "name": "myservice",
+                            "registry_id": "197992572051",
+                            "repository_url": "197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "ecs"
+            ],
+            "outputs": {
+                "alb_dns": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "lb-myservice-24014767.eu-west-1.elb.amazonaws.com"
+                },
+                "container_definition": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "[\n  {\n    \"memory\": null,\n    \"memoryReservation\": 2048,\n    \"portMappings\": [\n      {\n        \"hostPort\": 0,\n        \"containerPort\": 3030,\n        \"protocol\": \"tcp\"\n      }\n    ],\n    \"hostname\": null,\n    \"essential\": true,\n    \"name\": \"myservice\",\n    \"environment\": [],\n    \"links\": null,\n    \"image\": \"197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice:1.0.14\",\n    \"logConfiguration\": null\n  }\n]"
+                },
+                "ecs_alb_arn": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:loadbalancer/app/lb-myservice/3706141e8463296d"
+                },
+                "ecs_tg_arn": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:targetgroup/myservice-alb-tg/12fd69d6c794b6bb"
+                },
+                "task_revision": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "32"
+                }
+            },
+            "resources": {
+                "aws_alb.ecs_lb_without_logs": {
+                    "type": "aws_alb",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:loadbalancer/app/lb-myservice/3706141e8463296d",
+                        "attributes": {
+                            "access_logs.#": "0",
+                            "arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:loadbalancer/app/lb-myservice/3706141e8463296d",
+                            "arn_suffix": "app/lb-myservice/3706141e8463296d",
+                            "dns_name": "lb-myservice-24014767.eu-west-1.elb.amazonaws.com",
+                            "enable_deletion_protection": "true",
+                            "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:loadbalancer/app/lb-myservice/3706141e8463296d",
+                            "idle_timeout": "60",
+                            "internal": "false",
+                            "ip_address_type": "ipv4",
+                            "load_balancer_type": "application",
+                            "name": "lb-myservice",
+                            "security_groups.#": "1",
+                            "security_groups.3373096443": "sg-97de23ec",
+                            "subnets.#": "3",
+                            "subnets.1785029273": "subnet-4880eb23",
+                            "subnets.3138738619": "subnet-4980eb22",
+                            "subnets.841396177": "subnet-4a80eb21",
+                            "tags.%": "3",
+                            "tags.ManagedBy": "terraform",
+                            "tags.Name": "alb-myservice",
+                            "tags.Service": "myservice",
+                            "vpc_id": "vpc-4b80eb20",
+                            "zone_id": "Z32O12XQLNTSW2"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_alb_listener.alb_ecs": {
+                    "type": "aws_alb_listener",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:listener/app/lb-myservice/3706141e8463296d/48da7b1e5a39cd76",
+                        "attributes": {
+                            "arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:listener/app/lb-myservice/3706141e8463296d/48da7b1e5a39cd76",
+                            "certificate_arn": "arn:aws:acm:eu-west-1:197992572051:certificate/a7d960dd-e4f5-4b44-a9a4-37ddca016efc",
+                            "default_action.#": "1",
+                            "default_action.0.target_group_arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:targetgroup/myservice-alb-tg/12fd69d6c794b6bb",
+                            "default_action.0.type": "forward",
+                            "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:listener/app/lb-myservice/3706141e8463296d/48da7b1e5a39cd76",
+                            "load_balancer_arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:loadbalancer/app/lb-myservice/3706141e8463296d",
+                            "port": "443",
+                            "protocol": "HTTPS",
+                            "ssl_policy": "ELBSecurityPolicy-2016-08"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_alb_target_group.ecs_service": {
+                    "type": "aws_alb_target_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:targetgroup/myservice-alb-tg/12fd69d6c794b6bb",
+                        "attributes": {
+                            "arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:targetgroup/myservice-alb-tg/12fd69d6c794b6bb",
+                            "arn_suffix": "targetgroup/myservice-alb-tg/12fd69d6c794b6bb",
+                            "deregistration_delay": "300",
+                            "health_check.#": "1",
+                            "health_check.0.healthy_threshold": "2",
+                            "health_check.0.interval": "30",
+                            "health_check.0.matcher": "200",
+                            "health_check.0.path": "/",
+                            "health_check.0.port": "traffic-port",
+                            "health_check.0.protocol": "HTTP",
+                            "health_check.0.timeout": "10",
+                            "health_check.0.unhealthy_threshold": "3",
+                            "id": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:targetgroup/myservice-alb-tg/12fd69d6c794b6bb",
+                            "name": "myservice-alb-tg",
+                            "port": "3030",
+                            "protocol": "HTTP",
+                            "stickiness.#": "1",
+                            "stickiness.0.cookie_duration": "86400",
+                            "stickiness.0.enabled": "false",
+                            "stickiness.0.type": "lb_cookie",
+                            "tags.%": "1",
+                            "tags.Service": "myservice",
+                            "target_type": "instance",
+                            "vpc_id": "vpc-4b80eb20"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_ecs_cluster.ecs": {
+                    "type": "aws_ecs_cluster",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "arn:aws:ecs:eu-west-1:197992572051:cluster/myservice",
+                        "attributes": {
+                            "arn": "arn:aws:ecs:eu-west-1:197992572051:cluster/myservice",
+                            "id": "arn:aws:ecs:eu-west-1:197992572051:cluster/myservice",
+                            "name": "myservice"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_ecs_service.service": {
+                    "type": "aws_ecs_service",
+                    "depends_on": [
+                        "aws_alb_listener.alb_ecs",
+                        "aws_alb_target_group.ecs_service",
+                        "aws_ecs_cluster.ecs",
+                        "aws_iam_role.ecsServiceRole",
+                        "module.ecs_task_definition"
+                    ],
+                    "primary": {
+                        "id": "arn:aws:ecs:eu-west-1:197992572051:service/myservice",
+                        "attributes": {
+                            "cluster": "arn:aws:ecs:eu-west-1:197992572051:cluster/myservice",
+                            "deployment_maximum_percent": "200",
+                            "deployment_minimum_healthy_percent": "100",
+                            "desired_count": "1",
+                            "health_check_grace_period_seconds": "0",
+                            "iam_role": "arn:aws:iam::197992572051:role/myservice-ecsServiceRole",
+                            "id": "arn:aws:ecs:eu-west-1:197992572051:service/myservice",
+                            "launch_type": "EC2",
+                            "load_balancer.#": "1",
+                            "load_balancer.2905289774.container_name": "myservice",
+                            "load_balancer.2905289774.container_port": "3030",
+                            "load_balancer.2905289774.elb_name": "",
+                            "load_balancer.2905289774.target_group_arn": "arn:aws:elasticloadbalancing:eu-west-1:197992572051:targetgroup/myservice-alb-tg/12fd69d6c794b6bb",
+                            "name": "myservice",
+                            "network_configuration.#": "0",
+                            "placement_constraints.#": "0",
+                            "placement_strategy.#": "1",
+                            "placement_strategy.2224589570.field": "memory",
+                            "placement_strategy.2224589570.type": "binpack",
+                            "task_definition": "arn:aws:ecs:eu-west-1:197992572051:task-definition/myservice:32"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_iam_role.ecsServiceRole": {
+                    "type": "aws_iam_role",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "myservice-ecsServiceRole",
+                        "attributes": {
+                            "arn": "arn:aws:iam::197992572051:role/myservice-ecsServiceRole",
+                            "assume_role_policy": "{\"Version\":\"2008-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                            "create_date": "2017-10-19T14:10:20Z",
+                            "force_detach_policies": "false",
+                            "id": "myservice-ecsServiceRole",
+                            "name": "myservice-ecsServiceRole",
+                            "path": "/",
+                            "unique_id": "AROAIMFX4VUT5ULVYWIHG"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_iam_role_policy_attachment.EcsServicePolicyAttach": {
+                    "type": "aws_iam_role_policy_attachment",
+                    "depends_on": [
+                        "aws_iam_role.ecsServiceRole"
+                    ],
+                    "primary": {
+                        "id": "myservice-ecsServiceRole-20180215110351334000000001",
+                        "attributes": {
+                            "id": "myservice-ecsServiceRole-20180215110351334000000001",
+                            "policy_arn": "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole",
+                            "role": "myservice-ecsServiceRole"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group.ecs_lb": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-97de23ec",
+                        "attributes": {
+                            "description": "Allow inbound traffic for ECS Load Balancer",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.description": "",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.ipv6_cidr_blocks.#": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-97de23ec",
+                            "ingress.#": "2",
+                            "ingress.2214680975.cidr_blocks.#": "1",
+                            "ingress.2214680975.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.2214680975.description": "",
+                            "ingress.2214680975.from_port": "80",
+                            "ingress.2214680975.ipv6_cidr_blocks.#": "0",
+                            "ingress.2214680975.protocol": "tcp",
+                            "ingress.2214680975.security_groups.#": "0",
+                            "ingress.2214680975.self": "false",
+                            "ingress.2214680975.to_port": "80",
+                            "ingress.2617001939.cidr_blocks.#": "1",
+                            "ingress.2617001939.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.2617001939.description": "",
+                            "ingress.2617001939.from_port": "443",
+                            "ingress.2617001939.ipv6_cidr_blocks.#": "0",
+                            "ingress.2617001939.protocol": "tcp",
+                            "ingress.2617001939.security_groups.#": "0",
+                            "ingress.2617001939.self": "false",
+                            "ingress.2617001939.to_port": "443",
+                            "name": "myservice-ecs-lb",
+                            "owner_id": "197992572051",
+                            "revoke_rules_on_delete": "false",
+                            "tags.%": "1",
+                            "tags.Name": "myservice-ecs_lb",
+                            "vpc_id": "vpc-4b80eb20"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.in_allow_http_ecs_lb": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.ecs_lb"
+                    ],
+                    "primary": {
+                        "id": "sgrule-661744352",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "description": "",
+                            "from_port": "80",
+                            "id": "sgrule-661744352",
+                            "ipv6_cidr_blocks.#": "0",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-97de23ec",
+                            "self": "false",
+                            "to_port": "80",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.in_allow_https_ecs_lb": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.ecs_lb"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1429880361",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "description": "",
+                            "from_port": "443",
+                            "id": "sgrule-1429880361",
+                            "ipv6_cidr_blocks.#": "0",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-97de23ec",
+                            "self": "false",
+                            "to_port": "443",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.out_allow_all_lb": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.ecs_lb"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2237200245",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "description": "",
+                            "from_port": "0",
+                            "id": "sgrule-2237200245",
+                            "ipv6_cidr_blocks.#": "0",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-97de23ec",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.aws_elb_service_account.main": {
+                    "type": "aws_elb_service_account",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "357463611812",
+                        "attributes": {
+                            "arn": "arn:aws:iam::357463611812:root",
+                            "id": "357463611812"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "ecs",
+                "ecs_task_definition"
+            ],
+            "outputs": {
+                "arn": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "arn:aws:ecs:eu-west-1:197992572051:task-definition/myservice:32"
+                },
+                "container_definition": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "[\n  {\n    \"memory\": null,\n    \"memoryReservation\": 2048,\n    \"portMappings\": [\n      {\n        \"hostPort\": 0,\n        \"containerPort\": 3030,\n        \"protocol\": \"tcp\"\n      }\n    ],\n    \"hostname\": null,\n    \"essential\": true,\n    \"name\": \"myservice\",\n    \"environment\": [],\n    \"links\": null,\n    \"image\": \"197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice:1.0.14\",\n    \"logConfiguration\": null\n  }\n]"
+                },
+                "task_revision": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "32"
+                }
+            },
+            "resources": {
+                "aws_ecs_task_definition.service": {
+                    "type": "aws_ecs_task_definition",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "myservice",
+                        "attributes": {
+                            "arn": "arn:aws:ecs:eu-west-1:197992572051:task-definition/myservice:32",
+                            "container_definitions": "[{\"cpu\":0,\"environment\":[],\"essential\":true,\"image\":\"197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice:1.0.14\",\"memoryReservation\":2048,\"mountPoints\":[],\"name\":\"myservice\",\"portMappings\":[{\"containerPort\":3030,\"hostPort\":0,\"protocol\":\"tcp\"}],\"volumesFrom\":[]}]",
+                            "cpu": "",
+                            "execution_role_arn": "",
+                            "family": "myservice",
+                            "id": "myservice",
+                            "memory": "",
+                            "network_mode": "",
+                            "placement_constraints.#": "0",
+                            "requires_compatibilities.#": "0",
+                            "revision": "32",
+                            "task_role_arn": ""
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.template_file.task_definition": {
+                    "type": "template_file",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "4ce6f1d90612c70c1d20011afb9fcb473d1988dc699f4b7b438278f77ada5360",
+                        "attributes": {
+                            "id": "4ce6f1d90612c70c1d20011afb9fcb473d1988dc699f4b7b438278f77ada5360",
+                            "rendered": "[\n  {\n    \"memory\": null,\n    \"memoryReservation\": 2048,\n    \"portMappings\": [\n      {\n        \"hostPort\": 0,\n        \"containerPort\": 3030,\n        \"protocol\": \"tcp\"\n      }\n    ],\n    \"hostname\": null,\n    \"essential\": true,\n    \"name\": \"myservice\",\n    \"environment\": [],\n    \"links\": null,\n    \"image\": \"197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice:1.0.14\",\n    \"logConfiguration\": null\n  }\n]",
+                            "template": "[\n  {\n    \"memory\": ${ecs_task_memory},\n    \"memoryReservation\": ${ecs_task_memoryReservation},\n    \"portMappings\": [\n      {\n        \"hostPort\": ${ecs_task_hostPort},\n        \"containerPort\": ${ecs_task_containerPort},\n        \"protocol\": \"tcp\"\n      }\n    ],\n    \"hostname\": null,\n    \"essential\": true,\n    \"name\": \"${ecs_task_name}\",\n    \"environment\": [],\n    \"links\": null,\n    \"image\": \"${ecs_task_image}\",\n    \"logConfiguration\": null\n  }\n]",
+                            "vars.%": "6",
+                            "vars.ecs_task_containerPort": "3030",
+                            "vars.ecs_task_hostPort": "0",
+                            "vars.ecs_task_image": "197992572051.dkr.ecr.eu-west-1.amazonaws.com/myservice:1.0.14",
+                            "vars.ecs_task_memory": "null",
+                            "vars.ecs_task_memoryReservation": "2048",
+                            "vars.ecs_task_name": "myservice"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.template"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "ecs",
+                "spotinst_aws_group_ecs"
+            ],
+            "outputs": {
+                "spotinst_group_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sig-1938b67c"
+                }
+            },
+            "resources": {
+                "aws_iam_instance_profile.ecsInstanceRole": {
+                    "type": "aws_iam_instance_profile",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "ecs_profile",
+                        "attributes": {
+                            "arn": "arn:aws:iam::197992572051:instance-profile/ecs_profile",
+                            "id": "ecs_profile",
+                            "name": "ecs_profile",
+                            "path": "/",
+                            "role": "myservice-ecsInstanceRole",
+                            "roles.#": "1",
+                            "roles.1589785684": "myservice-ecsInstanceRole",
+                            "unique_id": "AIPAJM27BDK5UD52IXLNE"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_iam_role.ecsInstanceRole": {
+                    "type": "aws_iam_role",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "myservice-ecsInstanceRole",
+                        "attributes": {
+                            "arn": "arn:aws:iam::197992572051:role/myservice-ecsInstanceRole",
+                            "assume_role_policy": "{\"Version\":\"2008-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                            "create_date": "2017-10-19T14:10:21Z",
+                            "force_detach_policies": "false",
+                            "id": "myservice-ecsInstanceRole",
+                            "name": "myservice-ecsInstanceRole",
+                            "path": "/",
+                            "unique_id": "AROAI3XJ25MRRHFTPOOWW"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_iam_role_policy_attachment.EcsServicePolicyAttach": {
+                    "type": "aws_iam_role_policy_attachment",
+                    "depends_on": [
+                        "aws_iam_role.ecsInstanceRole"
+                    ],
+                    "primary": {
+                        "id": "myservice-ecsInstanceRole-20180215110351349000000002",
+                        "attributes": {
+                            "id": "myservice-ecsInstanceRole-20180215110351349000000002",
+                            "policy_arn": "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role",
+                            "role": "myservice-ecsInstanceRole"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group.ecs_ec2": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-d7e71aac",
+                        "attributes": {
+                            "description": "Allow inbound traffic for instances in ecs cluster",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.description": "",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.ipv6_cidr_blocks.#": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-d7e71aac",
+                            "ingress.#": "2",
+                            "ingress.1996567034.cidr_blocks.#": "1",
+                            "ingress.1996567034.cidr_blocks.0": "54.194.41.253/32",
+                            "ingress.1996567034.description": "",
+                            "ingress.1996567034.from_port": "22",
+                            "ingress.1996567034.ipv6_cidr_blocks.#": "0",
+                            "ingress.1996567034.protocol": "tcp",
+                            "ingress.1996567034.security_groups.#": "0",
+                            "ingress.1996567034.self": "false",
+                            "ingress.1996567034.to_port": "22",
+                            "ingress.585930634.cidr_blocks.#": "1",
+                            "ingress.585930634.cidr_blocks.0": "54.194.41.253/32",
+                            "ingress.585930634.description": "",
+                            "ingress.585930634.from_port": "32768",
+                            "ingress.585930634.ipv6_cidr_blocks.#": "0",
+                            "ingress.585930634.protocol": "tcp",
+                            "ingress.585930634.security_groups.#": "1",
+                            "ingress.585930634.security_groups.3373096443": "sg-97de23ec",
+                            "ingress.585930634.self": "false",
+                            "ingress.585930634.to_port": "61000",
+                            "name": "myservice-ecs-ec2",
+                            "owner_id": "197992572051",
+                            "revoke_rules_on_delete": "false",
+                            "tags.%": "1",
+                            "tags.Name": "myservice-ecs-ec2",
+                            "vpc_id": "vpc-4b80eb20"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.in_allow_22_ecs_ec2_for_jumphost": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.ecs_ec2"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2351673508",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "54.194.41.253/32",
+                            "description": "",
+                            "from_port": "22",
+                            "id": "sgrule-2351673508",
+                            "ipv6_cidr_blocks.#": "0",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-d7e71aac",
+                            "self": "false",
+                            "to_port": "22",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.in_allow_DynDockerPorts_ecs_ec2_for_alb": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.ecs_ec2"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2606293202",
+                        "attributes": {
+                            "cidr_blocks.#": "0",
+                            "description": "",
+                            "from_port": "32768",
+                            "id": "sgrule-2606293202",
+                            "ipv6_cidr_blocks.#": "0",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-d7e71aac",
+                            "self": "false",
+                            "source_security_group_id": "sg-97de23ec",
+                            "to_port": "61000",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.in_allow_DynDockerPorts_ecs_ec2_for_jumphost": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.ecs_ec2"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2404176069",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "54.194.41.253/32",
+                            "description": "",
+                            "from_port": "32768",
+                            "id": "sgrule-2404176069",
+                            "ipv6_cidr_blocks.#": "0",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-d7e71aac",
+                            "self": "false",
+                            "to_port": "61000",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.out_allow_all_ecs_ec2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.ecs_ec2"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1340541122",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "description": "",
+                            "from_port": "0",
+                            "id": "sgrule-1340541122",
+                            "ipv6_cidr_blocks.#": "0",
+                            "prefix_list_ids.#": "0",
+                            "protocol": "-1",
+                            "security_group_id": "sg-d7e71aac",
+                            "self": "false",
+                            "to_port": "0",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.aws_ami.amazon-ecs-optimized": {
+                    "type": "aws_ami",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "ami-0693ed7f",
+                        "attributes": {
+                            "architecture": "x86_64",
+                            "block_device_mappings.#": "2",
+                            "block_device_mappings.2538004115.device_name": "/dev/xvdcz",
+                            "block_device_mappings.2538004115.ebs.%": "5",
+                            "block_device_mappings.2538004115.ebs.delete_on_termination": "true",
+                            "block_device_mappings.2538004115.ebs.encrypted": "false",
+                            "block_device_mappings.2538004115.ebs.iops": "0",
+                            "block_device_mappings.2538004115.ebs.volume_size": "22",
+                            "block_device_mappings.2538004115.ebs.volume_type": "gp2",
+                            "block_device_mappings.2538004115.no_device": "",
+                            "block_device_mappings.2538004115.virtual_name": "",
+                            "block_device_mappings.340275815.device_name": "/dev/xvda",
+                            "block_device_mappings.340275815.ebs.%": "6",
+                            "block_device_mappings.340275815.ebs.delete_on_termination": "true",
+                            "block_device_mappings.340275815.ebs.encrypted": "false",
+                            "block_device_mappings.340275815.ebs.iops": "0",
+                            "block_device_mappings.340275815.ebs.snapshot_id": "snap-0c0e28711500f65ee",
+                            "block_device_mappings.340275815.ebs.volume_size": "8",
+                            "block_device_mappings.340275815.ebs.volume_type": "gp2",
+                            "block_device_mappings.340275815.no_device": "",
+                            "block_device_mappings.340275815.virtual_name": "",
+                            "creation_date": "2018-02-22T00:39:36.000Z",
+                            "description": "Amazon Linux AMI 2017.09.i x86_64 ECS HVM GP2",
+                            "filter.#": "2",
+                            "filter.2706159637.name": "name",
+                            "filter.2706159637.values.#": "1",
+                            "filter.2706159637.values.0": "*-amazon-ecs-optimized",
+                            "filter.574890044.name": "owner-alias",
+                            "filter.574890044.values.#": "1",
+                            "filter.574890044.values.0": "amazon",
+                            "hypervisor": "xen",
+                            "id": "ami-0693ed7f",
+                            "image_id": "ami-0693ed7f",
+                            "image_location": "amazon/amzn-ami-2017.09.i-amazon-ecs-optimized",
+                            "image_owner_alias": "amazon",
+                            "image_type": "machine",
+                            "most_recent": "true",
+                            "name": "amzn-ami-2017.09.i-amazon-ecs-optimized",
+                            "owner_id": "591542846629",
+                            "owners.#": "1",
+                            "owners.0": "amazon",
+                            "product_codes.#": "0",
+                            "public": "true",
+                            "root_device_name": "/dev/xvda",
+                            "root_device_type": "ebs",
+                            "root_snapshot_id": "snap-0c0e28711500f65ee",
+                            "sriov_net_support": "simple",
+                            "state": "available",
+                            "state_reason.%": "2",
+                            "state_reason.code": "UNSET",
+                            "state_reason.message": "UNSET",
+                            "tags.%": "0",
+                            "virtualization_type": "hvm"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.template_file.user_data": {
+                    "type": "template_file",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "38258fc57bb6231d4f81febb7fdaeea6e128c434a8e35aa9ca2276dc115ba936",
+                        "attributes": {
+                            "id": "38258fc57bb6231d4f81febb7fdaeea6e128c434a8e35aa9ca2276dc115ba936",
+                            "rendered": "#!/bin/bash\necho ECS_CLUSTER=myservice \u003e\u003e /etc/ecs/ecs.config",
+                            "template": "#!/bin/bash\necho ECS_CLUSTER=${ecs_cluster_name} \u003e\u003e /etc/ecs/ecs.config",
+                            "vars.%": "1",
+                            "vars.ecs_cluster_name": "myservice"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.template"
+                },
+                "spotinst_aws_group.ecs": {
+                    "type": "spotinst_aws_group",
+                    "depends_on": [
+                        "aws_iam_instance_profile.ecsInstanceRole",
+                        "aws_security_group.ecs_ec2",
+                        "data.aws_ami.amazon-ecs-optimized",
+                        "data.template_file.user_data"
+                    ],
+                    "primary": {
+                        "id": "sig-1938b67c",
+                        "attributes": {
+                            "availability_zones.#": "3",
+                            "availability_zones.0": "eu-west-1a:subnet-4980eb22",
+                            "availability_zones.1": "eu-west-1b:subnet-4a80eb21",
+                            "availability_zones.2": "eu-west-1c:subnet-4880eb23",
+                            "capacity.#": "1",
+                            "capacity.3157626798.maximum": "1",
+                            "capacity.3157626798.minimum": "1",
+                            "capacity.3157626798.target": "1",
+                            "capacity.3157626798.unit": "instance",
+                            "codedeploy_integration.#": "0",
+                            "description": "elastigroup for ecs cluster",
+                            "ebs_block_device.#": "0",
+                            "ec2_container_service_integration.#": "1",
+                            "ec2_container_service_integration.3746701607.autoscale_cooldown": "0",
+                            "ec2_container_service_integration.3746701607.autoscale_down.#": "0",
+                            "ec2_container_service_integration.3746701607.autoscale_headroom.#": "0",
+                            "ec2_container_service_integration.3746701607.autoscale_is_enabled": "false",
+                            "ec2_container_service_integration.3746701607.cluster_name": "myservice",
+                            "elastic_beanstalk_integration.#": "0",
+                            "elastic_ips.#": "0",
+                            "ephemeral_block_device.#": "0",
+                            "hot_ebs_volume.#": "0",
+                            "id": "sig-1938b67c",
+                            "image_id": "ami-0693ed7f",
+                            "instance_types.#": "1",
+                            "instance_types.2741267605.ondemand": "t2.medium",
+                            "instance_types.2741267605.spot.#": "2",
+                            "instance_types.2741267605.spot.0": "m3.large",
+                            "instance_types.2741267605.spot.1": "m4.large",
+                            "launch_specification.#": "1",
+                            "launch_specification.3140011233.ebs_optimized": "false",
+                            "launch_specification.3140011233.health_check_grace_period": "0",
+                            "launch_specification.3140011233.health_check_type": "",
+                            "launch_specification.3140011233.health_check_unhealthy_duration_before_replacement": "0",
+                            "launch_specification.3140011233.iam_instance_profile": "arn:aws:iam::197992572051:instance-profile/ecs_profile",
+                            "launch_specification.3140011233.iam_role": "",
+                            "launch_specification.3140011233.image_id": "",
+                            "launch_specification.3140011233.key_pair": "aunia-aws",
+                            "launch_specification.3140011233.load_balancer_names.#": "0",
+                            "launch_specification.3140011233.monitoring": "false",
+                            "launch_specification.3140011233.security_group_ids.#": "1",
+                            "launch_specification.3140011233.security_group_ids.0": "sg-d7e71aac",
+                            "launch_specification.3140011233.shutdown_script": "",
+                            "launch_specification.3140011233.tenancy": "",
+                            "launch_specification.3140011233.user_data": "#!/bin/bash\necho ECS_CLUSTER=myservice \u003e\u003e /etc/ecs/ecs.config",
+                            "load_balancer.#": "0",
+                            "mesosphere_integration.#": "0",
+                            "multai_integration.#": "0",
+                            "name": "eu-west-1-myservice",
+                            "network_interface.#": "0",
+                            "private_ips.#": "0",
+                            "product": "Linux/UNIX",
+                            "rancher_integration.#": "0",
+                            "roll_config.#": "1",
+                            "roll_config.1593338787.batch_size_percentage": "100",
+                            "roll_config.1593338787.grace_period": "600",
+                            "roll_config.1593338787.health_check_type": "EC2",
+                            "roll_config.1593338787.should_roll": "true",
+                            "scheduled_task.#": "0",
+                            "signal.#": "0",
+                            "strategy.#": "1",
+                            "strategy.4118485996.availability_vs_cost": "balanced",
+                            "strategy.4118485996.draining_timeout": "600",
+                            "strategy.4118485996.fallback_to_ondemand": "true",
+                            "strategy.4118485996.lifetime_period": "",
+                            "strategy.4118485996.ondemand_count": "0",
+                            "strategy.4118485996.risk": "100",
+                            "strategy.4118485996.spin_up_time": "0",
+                            "strategy.4118485996.utilize_reserved_instances": "true",
+                            "tags.%": "3",
+                            "tags.ManagedBy": "terraform",
+                            "tags.Name": "myservice-ecs",
+                            "tags.Service": "myservice"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.spotinst"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {
+                "this_security_group_description": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "Security group with all available arguments set (this is just an example)"
+                },
+                "this_security_group_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-23076c5e"
+                },
+                "this_security_group_name": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "complete-sg"
+                },
+                "this_security_group_owner_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "451181776686"
+                },
+                "this_security_group_vpc_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "vpc-1813fd7d"
+                }
+            },
+            "resources": {
+                "data.aws_security_group.default": {
+                    "type": "aws_security_group",
+                    "depends_on": [
+                        "data.aws_vpc.default"
+                    ],
+                    "primary": {
+                        "id": "sg-21fc3144",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:eu-west-1:451181776686:security-group/sg-21fc3144",
+                            "description": "default VPC security group",
+                            "id": "sg-21fc3144",
+                            "name": "default",
+                            "tags.%": "0",
+                            "vpc_id": "vpc-1813fd7d"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.aws_vpc.default": {
+                    "type": "aws_vpc",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "vpc-1813fd7d",
+                        "attributes": {
+                            "cidr_block": "172.31.0.0/16",
+                            "default": "true",
+                            "dhcp_options_id": "dopt-768b9c14",
+                            "enable_dns_hostnames": "true",
+                            "enable_dns_support": "true",
+                            "id": "vpc-1813fd7d",
+                            "instance_tenancy": "default",
+                            "state": "available",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "complete_sg"
+            ],
+            "outputs": {
+                "this_security_group_description": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "Security group with all available arguments set (this is just an example)"
+                },
+                "this_security_group_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-23076c5e"
+                },
+                "this_security_group_name": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "complete-sg"
+                },
+                "this_security_group_owner_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "451181776686"
+                },
+                "this_security_group_vpc_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "vpc-1813fd7d"
+                }
+            },
+            "resources": {
+                "aws_security_group.this": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-23076c5e",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:eu-west-1:451181776686:security-group/sg-23076c5e",
+                            "description": "Security group with all available arguments set (this is just an example)",
+                            "egress.#": "0",
+                            "id": "sg-23076c5e",
+                            "ingress.#": "0",
+                            "name": "complete-sg",
+                            "owner_id": "451181776686",
+                            "revoke_rules_on_delete": "false",
+                            "tags.%": "3",
+                            "tags.Cash": "king",
+                            "tags.Department": "kingdom",
+                            "tags.Name": "complete-sg",
+                            "vpc_id": "vpc-1813fd7d"
+                        },
+                        "meta": {
+                            "e2bfb730-ecaa-11e6-8f88-34363bc7c4c0": {
+                                "create": 600000000000,
+                                "delete": 600000000000
+                            },
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_rules": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-399914650",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "10.10.0.0/16",
+                            "description": "HTTP",
+                            "from_port": "80",
+                            "id": "sgrule-399914650",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "80",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_cidr_blocks.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1045422167",
+                        "attributes": {
+                            "cidr_blocks.#": "2",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "cidr_blocks.1": "2.2.2.2/32",
+                            "description": "Egress Rule",
+                            "from_port": "5432",
+                            "id": "sgrule-1045422167",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "5432",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_cidr_blocks.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3949789205",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "30.30.30.30/32",
+                            "description": "Egress Rule",
+                            "from_port": "443",
+                            "id": "sgrule-3949789205",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "443",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_cidr_blocks.2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-843766642",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "10.10.0.0/20",
+                            "description": "Service name",
+                            "from_port": "10",
+                            "id": "sgrule-843766642",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "20",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_ipv6_cidr_blocks": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2705651259",
+                        "attributes": {
+                            "description": "Service ports (ipv6)",
+                            "from_port": "300",
+                            "id": "sgrule-2705651259",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "400",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_self.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1647985022",
+                        "attributes": {
+                            "description": "Egress Rule",
+                            "from_port": "-1",
+                            "id": "sgrule-1647985022",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "-1",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "true",
+                            "to_port": "-1",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_self.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2552822817",
+                        "attributes": {
+                            "description": "Service name",
+                            "from_port": "30",
+                            "id": "sgrule-2552822817",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "true",
+                            "to_port": "40",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_self.2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2831652838",
+                        "attributes": {
+                            "description": "Egress Rule",
+                            "from_port": "41",
+                            "id": "sgrule-2831652838",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "51",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_source_security_group_id.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-483522123",
+                        "attributes": {
+                            "description": "Egress Rule",
+                            "from_port": "3306",
+                            "id": "sgrule-483522123",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "source_security_group_id": "sg-21fc3144",
+                            "to_port": "3306",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_source_security_group_id.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2670355419",
+                        "attributes": {
+                            "description": "Service name",
+                            "from_port": "10",
+                            "id": "sgrule-2670355419",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "source_security_group_id": "sg-21fc3144",
+                            "to_port": "10",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_rules": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3461602737",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "10.10.0.0/16",
+                            "description": "HTTPS",
+                            "from_port": "443",
+                            "id": "sgrule-3461602737",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "443",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_cidr_blocks.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3147436687",
+                        "attributes": {
+                            "cidr_blocks.#": "2",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "cidr_blocks.1": "2.2.2.2/32",
+                            "description": "Ingress Rule",
+                            "from_port": "5432",
+                            "id": "sgrule-3147436687",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "5432",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_cidr_blocks.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1679073529",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "30.30.30.30/32",
+                            "description": "Ingress Rule",
+                            "from_port": "5432",
+                            "id": "sgrule-1679073529",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "5432",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_cidr_blocks.2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3465028352",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "10.10.0.0/20",
+                            "description": "Service name",
+                            "from_port": "10",
+                            "id": "sgrule-3465028352",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "20",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_ipv6_cidr_blocks": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-4037159800",
+                        "attributes": {
+                            "description": "Service ports (ipv6)",
+                            "from_port": "300",
+                            "id": "sgrule-4037159800",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "400",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_self.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2990847285",
+                        "attributes": {
+                            "description": "Ingress Rule",
+                            "from_port": "-1",
+                            "id": "sgrule-2990847285",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "-1",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "true",
+                            "to_port": "-1",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_self.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1231743981",
+                        "attributes": {
+                            "description": "Service name",
+                            "from_port": "30",
+                            "id": "sgrule-1231743981",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "true",
+                            "to_port": "40",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_self.2": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-147392112",
+                        "attributes": {
+                            "description": "Ingress Rule",
+                            "from_port": "41",
+                            "id": "sgrule-147392112",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "to_port": "51",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_source_security_group_id.0": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3222174185",
+                        "attributes": {
+                            "description": "Ingress Rule",
+                            "from_port": "3306",
+                            "id": "sgrule-3222174185",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "source_security_group_id": "sg-21fc3144",
+                            "to_port": "3306",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_source_security_group_id.1": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-813830456",
+                        "attributes": {
+                            "description": "Service name",
+                            "from_port": "10",
+                            "id": "sgrule-813830456",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-23076c5e",
+                            "self": "false",
+                            "source_security_group_id": "sg-21fc3144",
+                            "to_port": "10",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "ipv4_ipv6_example"
+            ],
+            "outputs": {
+                "this_security_group_description": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "IPv4 and IPv6 example"
+                },
+                "this_security_group_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-6a016a17"
+                },
+                "this_security_group_name": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "ipv4-ipv6-example"
+                },
+                "this_security_group_owner_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "451181776686"
+                },
+                "this_security_group_vpc_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "vpc-1813fd7d"
+                }
+            },
+            "resources": {
+                "aws_security_group.this": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-6a016a17",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:eu-west-1:451181776686:security-group/sg-6a016a17",
+                            "description": "IPv4 and IPv6 example",
+                            "egress.#": "0",
+                            "id": "sg-6a016a17",
+                            "ingress.#": "0",
+                            "name": "ipv4-ipv6-example",
+                            "owner_id": "451181776686",
+                            "revoke_rules_on_delete": "false",
+                            "tags.%": "1",
+                            "tags.Name": "ipv4-ipv6-example",
+                            "vpc_id": "vpc-1813fd7d"
+                        },
+                        "meta": {
+                            "e2bfb730-ecaa-11e6-8f88-34363bc7c4c0": {
+                                "create": 600000000000,
+                                "delete": 600000000000
+                            },
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_cidr_blocks": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2089693428",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "description": "User-service ports (ipv4)",
+                            "from_port": "8090",
+                            "id": "sgrule-2089693428",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-6a016a17",
+                            "self": "false",
+                            "to_port": "8100",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.egress_with_ipv6_cidr_blocks": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-3739534323",
+                        "attributes": {
+                            "description": "User-service ports (ipv6)",
+                            "from_port": "8090",
+                            "id": "sgrule-3739534323",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-6a016a17",
+                            "self": "false",
+                            "to_port": "8100",
+                            "type": "egress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_cidr_blocks": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-1783881031",
+                        "attributes": {
+                            "cidr_blocks.#": "1",
+                            "cidr_blocks.0": "0.0.0.0/0",
+                            "description": "User-service ports (ipv4)",
+                            "from_port": "8080",
+                            "id": "sgrule-1783881031",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-6a016a17",
+                            "self": "false",
+                            "to_port": "8090",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_security_group_rule.ingress_with_ipv6_cidr_blocks": {
+                    "type": "aws_security_group_rule",
+                    "depends_on": [
+                        "aws_security_group.this"
+                    ],
+                    "primary": {
+                        "id": "sgrule-2958782327",
+                        "attributes": {
+                            "description": "User-service ports (ipv6)",
+                            "from_port": "8080",
+                            "id": "sgrule-2958782327",
+                            "ipv6_cidr_blocks.#": "1",
+                            "ipv6_cidr_blocks.0": "2001:db8::/64",
+                            "protocol": "tcp",
+                            "security_group_id": "sg-6a016a17",
+                            "self": "false",
+                            "to_port": "8090",
+                            "type": "ingress"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}

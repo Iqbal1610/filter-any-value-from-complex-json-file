@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  repository: test-image-build
+  pullPolicy: Never
+  tag: "v1"
+
+service:
+  type: NodePort
+  port: 80
