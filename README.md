@@ -85,7 +85,7 @@ We can export our file path and search key via
 export FILE_PATH=./devops_interview_terraform_state.json
 export SEARCH_PARAMETER=source_security_group_id
 
-
+# Now run the script
 ./run.sh
 ```
 Now you will see all key-value matched with **source_security_group_id** inside the given json file.
