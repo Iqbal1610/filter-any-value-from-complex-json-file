@@ -71,7 +71,7 @@ Check application deployment via kubectl
 ```
 kubectl get ingress,all -n test-app
 ```
-You will see all resources are deployed as expected and the endpoint will be accessible via **http://localhost/uploadfile/** this url by providing json file path with searching parameter.
+You will see all resources are deployed as expected and the endpoint will be accessible via **http://localhost/docs/** this url by providing json file path with searching parameter.
 
 
 ### Test the API with json file and search parameter
